@@ -16,6 +16,10 @@ class CreateRiddlesTable extends Migration
         Schema::create('riddles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->double('lat')->nullable();
+            $table->double('lng')->nullable();
+            $table->string('solution')->nullable();
+            $table->text('copy')->nullable();
         });
     }
 
