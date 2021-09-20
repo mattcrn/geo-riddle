@@ -1,5 +1,6 @@
 <div x-data="map">
 <div id="map" class=" w-80 h-80" @click="toggle">
+    {{ var_dump($riddles) }}
 </div>
 <div x-show="open">{{ $slot }}</div>
 </div>

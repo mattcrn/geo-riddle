@@ -14,7 +14,7 @@
 </head>
 
 <body class="bg-gray-800">
-    <x-map><livewire:riddle :riddle="$riddle"/></x-map>
+    <x-map :riddles="$riddles"></x-map>
     @livewireScripts
     @stack('scripts')
 </body>

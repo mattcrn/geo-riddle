@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Database\Eloquent\Collection;
 
 class Map extends Component
 {
@@ -11,10 +12,8 @@ class Map extends Component
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(public Collection $riddles)
+    {}
 
     /**
      * Get the view / contents that represent the component.
