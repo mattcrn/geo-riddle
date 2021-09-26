@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RiddleResource;
 use Illuminate\Http\Request;
 use App\Models\Riddle;
 
@@ -11,6 +12,6 @@ class RiddleController extends Controller
 
         $riddles = Riddle::all();
 
-        return view('index', ['riddles' => $riddles]);
+        return view('index', ['riddles' => RiddleResource::collection($riddles)]);
     }
 }

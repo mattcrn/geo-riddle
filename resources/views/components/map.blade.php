@@ -1,41 +1,87 @@
-<div x-data="map">
-<div id="map" class=" w-80 h-80" @click="toggle">
-    {{ $riddles }}
+<div x-data="map" class="relative w-screen h-screen">
+    <div id="map" class=" w-full h-full z-0"></div>
+    @livewire('riddle-modal')
 </div>
-<div x-show="open">{{ $slot }}</div>
-</div>
-
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('map', () => ({
 
             open: false,
+            userPosition: {
+                latitude: 48,
+                longitude: 16,
+            },
+            mapData: {!! $riddles !!},
+            map: null,
+            userMarker: null,
+            geolocationOptions: {
+                enableHighAccuracy: false,
+                timeout: 5000,
+                maximumAge: 0
+            },
 
-                        toggle() {
-                this.open = !this.open;
+
+            setUserPosition(pos) {
+                const {
+                    latitude,
+                    longitude
+                } = pos.coords;
+
+                this.userPosition = {
+                    latitude,
+                    longitude
+                }
             },
 
             init() {
-                const mymap = L.map('map').setView([51.505, -0.09], 13);
+
+                navigator.geolocation.getCurrentPosition(this.setUserPosition, (err) => {
+                    console.warn('ERROR(' + err.code + '): ' + err.message);
+                }, this.geolocationOptions)
+
+                this.map = L.map('map').setView([this.userPosition.latitude, this.userPosition
+                    .longitude
+                ], 13);
                 L.tileLayer(
                         "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png", {
                             preferCanvas: true,
                             maxZoom: 18,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
                         })
-                    .addTo(mymap);
+                    .addTo(this.map);
 
-                const circle = L.circle([51.508, -0.11], {
-                    color: 'red',
-                    fillColor: '#f03',
+                this.userMarker = L.circle([this.userPosition.latitude, this.userPosition
+                    .longitude
+                ], {
+                    color: 'blue',
+                    fillColor: 'blue',
                     fillOpacity: 0.5,
-                    radius: 50
-                }).addTo(mymap);
-                circle.on('click', (e) => {
-                    this.toggle();
-                });
-            },
+                    radius: 10
+                }).addTo(this.map);
 
+                this.mapData.forEach(dataPoint => {
+                    const circle = L.circle([dataPoint.lng, dataPoint.lat], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.5,
+                        radius: 50
+                    }).addTo(this.map);
+                    circle.on('click', (e) => {
+                        Livewire.emit('setRiddleModal', dataPoint.id);
+                    });
+                });
+
+                navigator.geolocation.watchPosition((pos) => {
+                    const {
+                        latitude,
+                        longitude
+                    } = pos.coords;
+                        this.userMarker.setLatLng(L.latLng(latitude, longitude))
+                }, (err) => {
+                    console.warn('ERROR(' + err.code + '): ' + err.message);
+                }, this.geolocationOptions);
+
+            },
 
         }))
     })

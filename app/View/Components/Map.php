@@ -2,18 +2,21 @@
 
 namespace App\View\Components;
 
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\View\Component;
-use Illuminate\Database\Eloquent\Collection;
 
 class Map extends Component
 {
+    public $riddles;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(public Collection $riddles)
-    {}
+    public function __construct(ResourceCollection $riddles)
+    {
+        $this->riddles = $riddles->toJson();
+    }
 
     /**
      * Get the view / contents that represent the component.
