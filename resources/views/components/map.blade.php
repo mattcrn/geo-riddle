@@ -1,4 +1,4 @@
-<div x-data="map" class="relative w-screen h-screen">
+<div x-data="map" class="relative w-full h-full">
     <div id="map" class=" w-full h-full z-0"></div>
     @livewire('riddle-modal')
 </div>
@@ -60,14 +60,14 @@
                 }).addTo(this.map);
 
                 this.mapData.forEach(dataPoint => {
-                    const circle = L.circle([dataPoint.lng, dataPoint.lat], {
+                    const circle = L.circle([dataPoint.lat, dataPoint.lng], {
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.5,
                         radius: 50
                     }).addTo(this.map);
                     circle.on('click', (e) => {
-                        Livewire.emit('setRiddleModal', dataPoint.id);
+                        Livewire.emit('setRiddleModal', dataPoint.id, this.userPosition.latitude, this.userPosition.longitude);
                     });
                 });
 
@@ -76,7 +76,8 @@
                         latitude,
                         longitude
                     } = pos.coords;
-                        this.userMarker.setLatLng(L.latLng(latitude, longitude))
+                    this.userPosition = {latitude, longitude};
+                    this.userMarker.setLatLng(L.latLng(latitude, longitude))
                 }, (err) => {
                     console.warn('ERROR(' + err.code + '): ' + err.message);
                 }, this.geolocationOptions);

@@ -15,6 +15,9 @@
             <div class="p-6">
                 <livewire:members-list />
             </div>
+            <div class="p-6">
+                <x-complete-riddles/>
+            </div>
         </div>
     </div>
 

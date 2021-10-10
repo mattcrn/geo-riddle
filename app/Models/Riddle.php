@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Riddle extends Model
 {
     use HasFactory;
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

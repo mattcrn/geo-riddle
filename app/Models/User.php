@@ -42,6 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The roles that belong to the user.
+     */
+    public function riddles()
+    {
+        return $this->belongsToMany(Riddle::class);
+    }
+
     public function members() {
         return $this->hasMany(Member::class);
     }
