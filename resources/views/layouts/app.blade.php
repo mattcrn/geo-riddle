@@ -22,7 +22,9 @@
     </head>
     <body class="font-sans antialiased">
         <div class="h-screen bg-gray-100 flex flex-col">
+            @if(null !== Auth::user())
             @include('layouts.navigation')
+            @endif
 
             <!-- Page Content -->
             <main class="h-full">
