@@ -2,7 +2,9 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class Map extends Component
@@ -15,7 +17,7 @@ class Map extends Component
      */
     public function __construct(ResourceCollection $riddles)
     {
-        $this->riddles = $riddles->toJson();
+        $this->riddles = User::find(Auth::id())->riddles()->get()->toJson();
     }
 
     /**

@@ -5,12 +5,16 @@
         @isset($riddle)
             <div class=" bg-gray-800 m-8 max-w-4xl p-8 flex flex-col items-center h-5/6 overflow-y-scroll gap-4">
                 <p class=" text-2xl text-red-300">{{ $riddle->copy }}</p>
+                @if (!$solved)
                 <input type="text" wire:model.defer='userSolution' />
-                <p class="text-2x2 text-green-300">{{ $userSolution }}</p>
                 <button wire:click='answer' class=" bg-green-400 p-1 rounded-sm font-semibold">Code eingeben</button>
                 @if ($message)
-                    <p class=" w-min p-2 my-4 bg-red-300 text-red-800 border border-red-800 rounded-sm">{{ $message }}
+                    <p class="text-red-300">{{ $message }}
                     </p>
+                @endif
+                @else
+                    <p class=" text-green-400">Code ist korrekt, der Lösungsbuchstabe lautet:</p>
+                    <p class="text-green-400 font-bold text-2xl">{{ $riddle->reward }}</p>
                 @endif
             </div>
         @endisset

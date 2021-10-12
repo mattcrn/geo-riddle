@@ -16,6 +16,7 @@ class RiddleModal extends Component
     public $userSolution;
     public $message;
     public $visible = false;
+    public $solved = false;
 
     protected $listeners = ['setRiddleModal' => 'setRiddle', 'hideModal'];
 
@@ -47,11 +48,11 @@ class RiddleModal extends Component
             $distance = 0;
         }
         
-        if ($distance < 20) {
+        if ($distance < 20000) {
             $this->riddle = $currentRiddle;
             $this->visible = true;$this->emit('hideAlert');
         } else {
-            $this->emit('alert', 'Du bist zu weit weg für dieses Rätsel');
+            $this->emit('alert', 'Du bist zu weit weg!');
             $this->visible = false;
         }
     }
@@ -64,10 +65,9 @@ class RiddleModal extends Component
     public function answer()
     {
         if ($this->riddle->solution === $this->userSolution) {
-            User::find(Auth::user()->id)->riddles()->attach($this->riddle->id);
-            $this->message = "RIGHT!!";
+            $this->solved = true;
         } else {
-            $this->message = "WROOONG!";
+            $this->message = "Error: Falscher Code probiere es erneut!";
         }
     }
 }

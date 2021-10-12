@@ -9,14 +9,14 @@
 
             open: false,
             userPosition: {
-                latitude: 48,
-                longitude: 16,
+                latitude: 48.2118077,
+                longitude: 16.4003608,
             },
             mapData: {!! $riddles !!},
             map: null,
             userMarker: null,
             geolocationOptions: {
-                enableHighAccuracy: false,
+                enableHighAccuracy: true,
                 timeout: 5000,
                 maximumAge: 0
             },
@@ -65,7 +65,7 @@
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.5,
-                        radius: 50
+                        radius: 20
                     }).addTo(this.map);
                     circle.on('click', (e) => {
                         Livewire.emit('setRiddleModal', dataPoint.id, this
