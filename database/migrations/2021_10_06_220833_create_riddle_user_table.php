@@ -18,6 +18,7 @@ class CreateRiddleUserTable extends Migration
             $table->timestamps();
             $table->integer('user_id');
             $table->integer('riddle_id');
+            $table->boolean('solved')->default(false);
         });
     }
 

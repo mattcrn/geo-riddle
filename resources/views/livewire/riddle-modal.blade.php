@@ -5,7 +5,7 @@
         @isset($riddle)
             <div class=" bg-gray-800 m-8 max-w-4xl p-8 flex flex-col items-center h-5/6 overflow-y-scroll gap-4">
                 <p class=" text-2xl text-red-300">{{ $riddle->copy }}</p>
-                @if (!$solved)
+                @if (!$riddle?->pivot?->solved)
                 <input type="text" wire:model.defer='userSolution' />
                 <button wire:click='answer' class=" bg-green-400 p-1 rounded-sm font-semibold">Code eingeben</button>
                 @if ($message)

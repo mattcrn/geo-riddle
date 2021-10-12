@@ -47,7 +47,7 @@ class User extends Authenticatable
      */
     public function riddles()
     {
-        return $this->belongsToMany(Riddle::class);
+        return $this->belongsToMany(Riddle::class)->withPivot('solved');
     }
 
     public function members() {

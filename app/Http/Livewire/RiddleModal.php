@@ -26,14 +26,9 @@ class RiddleModal extends Component
         return view('livewire.riddle-modal');
     }
 
-    public function mount()
-    {
-        //$this->setRiddle(1);
-    }
-
     public function setRiddle(int $id, float $latitude, float $longitude): void
     {
-        $currentRiddle = ModelsRiddle::find($id);
+        $currentRiddle = User::find(Auth::id())->riddles()->find($id);
 
         $riddlePosition = new LatLong($currentRiddle->lat, $currentRiddle->lng);
         $userPosition = new LatLong($latitude, $longitude);
@@ -50,7 +45,8 @@ class RiddleModal extends Component
         
         if ($distance < 20000) {
             $this->riddle = $currentRiddle;
-            $this->visible = true;$this->emit('hideAlert');
+            $this->visible = true;
+            $this->emit('hideAlert');
         } else {
             $this->emit('alert', 'Du bist zu weit weg!');
             $this->visible = false;
@@ -60,14 +56,20 @@ class RiddleModal extends Component
     public function hideModal()
     {
         $this->visible = false;
+        $this->userSolution = '';
     }
 
     public function answer()
     {
         if ($this->riddle->solution === $this->userSolution) {
-            $this->solved = true;
+            User::find(Auth::id())->riddles()->updateExistingPivot($this->riddle->id, ['solved' => true]);
+            $this->refreshRiddle();
         } else {
             $this->message = "Error: Falscher Code probiere es erneut!";
         }
+    }
+
+    private function refreshRiddle() {
+        $this->riddle = User::find(Auth::id())->riddles()->find($this->riddle->id);;
     }
 }
