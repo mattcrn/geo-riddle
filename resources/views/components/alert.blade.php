@@ -16,7 +16,6 @@
             message: null,
 
             init() {
-                console.log('init');
                 Livewire.on('alert', msg => {
                     this.message = msg;
                     this.open = true;

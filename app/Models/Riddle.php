@@ -9,6 +9,13 @@ class Riddle extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'lat',
+        'lng',
+        'copy',
+        'solution',
+    ];
+
     /**
      * The roles that belong to the user.
      */

@@ -1,6 +1,7 @@
 <div x-data="map" class="relative w-full h-full">
     <div id="map" class=" w-full h-full z-0"></div>
     @livewire('riddle-modal')
+    @livewire('save-position')
 </div>
 <script>
     document.addEventListener('alpine:init', () => {
@@ -67,7 +68,8 @@
                         radius: 50
                     }).addTo(this.map);
                     circle.on('click', (e) => {
-                        Livewire.emit('setRiddleModal', dataPoint.id, this.userPosition.latitude, this.userPosition.longitude);
+                        Livewire.emit('setRiddleModal', dataPoint.id, this
+                            .userPosition.latitude, this.userPosition.longitude);
                     });
                 });
 
@@ -76,11 +78,21 @@
                         latitude,
                         longitude
                     } = pos.coords;
-                    this.userPosition = {latitude, longitude};
+                    this.userPosition = {
+                        latitude,
+                        longitude
+                    };
                     this.userMarker.setLatLng(L.latLng(latitude, longitude))
                 }, (err) => {
                     console.warn('ERROR(' + err.code + '): ' + err.message);
                 }, this.geolocationOptions);
+
+                window.addEventListener('save-position', (e) => {
+                    if (e.detail.description) {
+                        Livewire.emit('savePositionData', this
+                            .userPosition.latitude, this.userPosition.longitude);
+                    }
+                })
 
             },
 
