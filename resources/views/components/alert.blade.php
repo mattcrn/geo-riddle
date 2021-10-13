@@ -1,5 +1,5 @@
 <p x-data="alert" x-show="open" x-ref="alertModal" wire:key="theThing" style="display: none"
-    class="bg-white filter drop-shadow-sm mt-4 p-4 z-10 mx-auto flex justify-center items-center">
+    class="bg-gray-800 text-white filter drop-shadow-sm mt-4 p-4 z-10 mx-auto flex justify-center items-center">
     <span x-text="message"></span>
     <button class="ml-2 hover:text-grey" @click="open = false">
         <svg class="stroke-current w-5" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"

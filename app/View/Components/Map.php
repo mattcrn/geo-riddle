@@ -10,6 +10,8 @@ use Illuminate\View\Component;
 class Map extends Component
 {
     public $riddles;
+    public $userHasWon;
+
     /**
      * Create a new component instance.
      *
@@ -18,6 +20,7 @@ class Map extends Component
     public function __construct(ResourceCollection $riddles)
     {
         $this->riddles = User::find(Auth::id())->riddles()->get()->toJson();
+        $this->userHasWon = User::find(Auth::id())->hasWon;
     }
 
     /**

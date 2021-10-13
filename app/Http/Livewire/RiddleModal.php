@@ -43,7 +43,7 @@ class RiddleModal extends Component
             $distance = 0;
         }
         
-        if ($distance < 20000) {
+        if ($distance < 20000 || User::find(Auth::id())->riddles()->find($currentRiddle?->id)?->pivot?->solved) {
             $this->riddle = $currentRiddle;
             $this->visible = true;
             $this->emit('hideAlert');
@@ -57,11 +57,12 @@ class RiddleModal extends Component
     {
         $this->visible = false;
         $this->userSolution = '';
+        $this->message = null;
     }
 
     public function answer()
     {
-        if ($this->riddle->solution === $this->userSolution) {
+        if ($this->riddle->solution === strtolower($this->userSolution)) {
             User::find(Auth::id())->riddles()->updateExistingPivot($this->riddle->id, ['solved' => true]);
             $this->refreshRiddle();
         } else {

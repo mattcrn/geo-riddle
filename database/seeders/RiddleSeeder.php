@@ -15,13 +15,6 @@ class RiddleSeeder extends Seeder
     public function run()
     {
         Riddle::create([
-            'lat' => 48.2118077,
-            'lng' => 16.4003608,
-            'copy' => 'Basis',
-            'solution' => 'ipsum',
-            'reward' => ''
-        ]);
-        Riddle::create([
             'lat' => 48.2105419,
             'lng' => 16.4031041,
             'copy' => 'Turm',

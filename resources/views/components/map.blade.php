@@ -1,13 +1,12 @@
 <div x-data="map" class="relative w-full h-full">
     <div id="map" class=" w-full h-full z-0"></div>
     @livewire('riddle-modal')
-    @livewire('save-position')
+    @livewire('find-my-giraffe')
 </div>
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('map', () => ({
 
-            open: false,
             userPosition: {
                 latitude: 48.2118077,
                 longitude: 16.4003608,
@@ -20,7 +19,12 @@
                 timeout: 5000,
                 maximumAge: 0
             },
+            userHasWon: {!! $userHasWon !!},
 
+            giraffe: {
+                latitude: 48.21503104526866,
+                longitude: 16.34262381232978,
+            },
 
             setUserPosition(pos) {
                 const {
@@ -60,6 +64,22 @@
                     radius: 10
                 }).addTo(this.map);
 
+                L.circle([48.2118077, 16.4003608], {
+                    color: 'green',
+                    fillColor: 'green',
+                    fillOpacity: 0.5,
+                    radius: 10
+                }).addTo(this.map);
+
+                if (this.userHasWon) {
+                    L.circle([this.giraffe.latitude, this.giraffe.longitude], {
+                        color: 'black',
+                        fillColor: 'black',
+                        fillOpacity: 0.5,
+                        radius: 10
+                    }).addTo(this.map);
+                }
+
                 this.mapData.forEach(dataPoint => {
                     const circle = L.circle([dataPoint.lat, dataPoint.lng], {
                         color: 'red',
@@ -92,6 +112,12 @@
                         Livewire.emit('savePositionData', this
                             .userPosition.latitude, this.userPosition.longitude);
                     }
+                })
+
+                window.addEventListener('find-giraffe', (e) => {
+                    this.map.setView([this.giraffe.latitude, this.giraffe
+                    .longitude
+                ], 13);
                 })
 
             },
