@@ -20,7 +20,7 @@
                     <p class=" text-sm text-red-300">{{$message}}</p>
                 @endif
                 @else
-                    <p class="text-green-400 mt-4">Erfolg: Die Giraffe wir jetzt als schwarzer Punkt auf der Karten angezeigt.</p>
+                    <p class="text-green-400 my-4">Erfolg: Die Giraffe wir jetzt als schwarzer Punkt auf der Karten angezeigt.</p>
                     <button @click="showGiraffe" class=" bg-green-400 px-4 py-2 rounded-sm font-semibold">Giraffe anzeigen</button>                    
                 @endif
             </div>

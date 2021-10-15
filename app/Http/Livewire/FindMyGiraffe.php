@@ -24,7 +24,7 @@ class FindMyGiraffe extends Component
             User::find(Auth::user()->id)->update(['hasWon' => true]);
             $this->userHasWon= true;
         } else {
-            $this->message = 'wrong';
+            $this->message = 'Passwort falsch.';
         }
     }
 

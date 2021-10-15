@@ -20,6 +20,7 @@ class CreateRiddlesTable extends Migration
             $table->double('lng')->nullable();
             $table->string('solution')->nullable();
             $table->text('copy')->nullable();
+            $table->text('title')->nullable();
         });
     }
 

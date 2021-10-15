@@ -3,6 +3,17 @@
     @livewire('riddle-modal')
     @livewire('find-my-giraffe')
 </div>
+<style>
+    .leaflet-bar a,
+    .leaflet-bar a:hover {
+        color: white;
+        background: rgb(31, 41, 55);
+    }
+    .leaflet-touch .leaflet-bar {
+        border: transparent;
+        margin-top: 2em;
+    }
+</style>
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('map', () => ({
@@ -21,10 +32,12 @@
             },
             userHasWon: {!! $userHasWon !!},
 
-            giraffe: {
+            giraffeData: {
                 latitude: 48.21503104526866,
                 longitude: 16.34262381232978,
             },
+
+            giraffe: null,
 
             setUserPosition(pos) {
                 const {
@@ -72,12 +85,7 @@
                 }).addTo(this.map);
 
                 if (this.userHasWon) {
-                    L.circle([this.giraffe.latitude, this.giraffe.longitude], {
-                        color: 'black',
-                        fillColor: 'black',
-                        fillOpacity: 0.5,
-                        radius: 10
-                    }).addTo(this.map);
+                    this.createGiraffe();
                 }
 
                 this.mapData.forEach(dataPoint => {
@@ -115,12 +123,24 @@
                 })
 
                 window.addEventListener('find-giraffe', (e) => {
-                    this.map.setView([this.giraffe.latitude, this.giraffe
-                    .longitude
-                ], 13);
+                    this.map.setView([this.giraffeData.latitude, this.giraffeData
+                        .longitude
+                    ], 16);
+                    if (!this.giraffe) {
+                        this.createGiraffe();
+                    }
                 })
 
             },
+
+            createGiraffe() {
+                this.giraffe = L.circle([this.giraffeData.latitude, this.giraffeData.longitude], {
+                    color: 'black',
+                    fillColor: 'black',
+                    fillOpacity: 0.5,
+                    radius: 10
+                }).addTo(this.map);
+            }
 
         }))
     })

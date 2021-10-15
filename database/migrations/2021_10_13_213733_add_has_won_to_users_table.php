@@ -14,7 +14,7 @@ class AddHasWonToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('hasWon')->default(true);
+            $table->boolean('hasWon')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ class AddHasWonToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('reward');
+            $table->dropColumn('hasWon');
         });
     }
 }

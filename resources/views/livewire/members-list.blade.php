@@ -1,5 +1,5 @@
-<div class="mt-8 font-bold">
-    <h2 class=" text-xl mb-6">Members:</h2>
+<div class="font-bold">
+    <h2 class=" text-xl mb-6">Mitglieder:</h2>
     @isset($members)
         <ul>
             @foreach ($members as $member)
@@ -16,7 +16,7 @@
                 </li>
             @endforeach
             <form wire:submit.prevent="save" class="flex flex-col mt-8">
-                <label class="mb-6 text-xl">Add a member to the team:</label>
+                <label class="mb-6 text-xl">Neues Mitglied hinzufügen:</label>
                 <div class="flex items-center">
                     <input class="flex-grow border-white rounded-sm focus:ring-indigo-400" type="text" wire:model="newMemberName">
                     <button class="bg-indigo-400 text-white px-2 py-2 rounded-sm shadow-sm h-10" type="submit">
