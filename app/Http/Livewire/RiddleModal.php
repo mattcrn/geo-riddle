@@ -43,7 +43,7 @@ class RiddleModal extends Component
             $distance = 0;
         }
         
-        if ($distance < 20000 || User::find(Auth::id())->riddles()->find($currentRiddle?->id)?->pivot?->solved) {
+        if ($distance < 20 || User::find(Auth::id())->riddles()->find($currentRiddle?->id)?->pivot?->solved) {
             $this->riddle = $currentRiddle;
             $this->visible = true;
             $this->emit('hideAlert');

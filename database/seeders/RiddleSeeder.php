@@ -82,7 +82,7 @@ class RiddleSeeder extends Seeder
         Riddle::create([
             'lat' => 48.2152361,
             'lng' => 16.3964246,
-            'title' => 'Usichtbar?',
+            'title' => 'Unsichtbar?',
             'copy' => 'Was könnt ihr hier hören, aber nicht sehen?',
             'solution' => 'glocke',
             'reward' => 'I'
