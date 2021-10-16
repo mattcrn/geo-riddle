@@ -18,7 +18,7 @@ class RiddleSeeder extends Seeder
             'lat' => 48.2105419,
             'lng' => 16.4031041,
             'title' => 'Hoch hinaus',
-            'copy' => 'Konstantins Hügel wurde erklommen, doch hoch ist man nicht. Etwas viel höheres kann man von hier erspähen, doch wie viele Meter hoch müsste man noch steigen um diesen höchsten Punkt zu erreichen?',
+            'copy' => 'Konstantins Hügel wurde erklommen, doch hoch ist man nicht. Etwas viel höheres kann man von hier erspähen, doch wie viele Meter hoch müsste man noch steigen, um diesen höchsten Punkt zu erreichen?',
             'solution' => '107',
             'reward' => 'T'
         ]);
@@ -34,7 +34,7 @@ class RiddleSeeder extends Seeder
             'lat' => 48.2103417,
             'lng' => 16.4061582,
             'title' => 'Spielende Affen',
-            'copy' => 'Wenn die Affen mit dem Spielen fertig sind, reisen sie nach Süden in ihr altes großes Haus, das an einer Seite keine Fassade mehr hat. Welche Hausnummer hat die Affensesidenz?',
+            'copy' => 'Wenn die Affen mit dem Spielen fertig sind, reisen sie nach Süden in ihr altes großes Haus, das an einer Seite keine Fassade mehr hat. Welche Hausnummer hat die Affenresidenz?',
             'solution' => '7073',
             'reward' => 'E'
         ]);
@@ -42,7 +42,7 @@ class RiddleSeeder extends Seeder
             'lat' => 48.2146456,
             'lng' => 16.4000034,
             'title' => 'Boxen',
-            'copy' => 'Rocky Balboa nahm stattdessen Schweinehälften. Wie viele des weniger blutigen Pendants könnt ihr hier, gestreift in den Farben des Wappens dieser Stadt, finden?',
+            'copy' => 'Rocky Balboa nahm stattdessen Schweinehälften. Wie viele, des weniger blutigen Pendants, könnt ihr hier, gestreift in den Farben des Wappens dieser Stadt, finden?',
             'solution' => '9',
             'reward' => 'R'
         ]);
@@ -50,7 +50,7 @@ class RiddleSeeder extends Seeder
             'lat' => 48.2158673,
             'lng' => 16.4009394,
             'title' => 'Totenschädel',
-            'copy' => 'Vor euch erhebt sich das Portal ein eine Welt des Schreckens. Kommt nur näher und zählt wie viele weiße Totenschädel ihr finden könnt. (Tipp: Aufgemahlte und Schädel auf den Wägen zählen nicht.)',
+            'copy' => 'Vor euch erhebt sich das Portal ein eine Welt des Schreckens. Kommt nur näher und zählt wie viele weiße Totenschädel ihr finden könnt. (Tipp: Aufgemalte und Schädel auf den Wägen zählen nicht.)',
             'solution' => '15',
             'reward' => 'E'
         ]);
@@ -58,7 +58,7 @@ class RiddleSeeder extends Seeder
             'lat' => 48.2154467,
             'lng' => 16.4002211,
             'title' => 'Wer sitzt wo?',
-            'copy' => '4 Leute wollen mit einem Auto fahren, das vier Plätze hat. In wie vielen unterschiedlichen Sitzkombinationen könne sie Sitzen wenn nur einer den Führerschein hat?',
+            'copy' => '4 Leute wollen mit einem Auto fahren, das vier Plätze hat. In wie vielen unterschiedlichen Sitzkombinationen könne sie sitzen, wenn nur einer den Führerschein hat?',
             'solution' => '6',
             'reward' => 'S'
         ]);
